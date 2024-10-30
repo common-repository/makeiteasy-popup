@@ -1,0 +1,129 @@
+	{
+		"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+		"preferredVersions": {
+			"php": "8.3",
+			"wp": "6.6"
+		},
+		"features": {
+			"networking": true
+		},
+		"phpExtensionBundles": [
+			"kitchen-sink"
+		],
+		"landingPage": "/",
+		"steps": [
+			{
+				"step": "login",
+				"username": "admin",
+				"password": "password"
+			},
+			{
+				"step": "installPlugin",
+				"pluginZipFile": {
+					"resource": "wordpress.org/plugins",
+					"slug": "makeiteasy-back-to-top"
+				},
+				"options": {
+					"activate": true
+				}
+			},
+			{
+				"step": "installPlugin",
+				"pluginZipFile": {
+					"resource": "wordpress.org/plugins",
+					"slug": "makeiteasy-popup"
+				},
+				"options": {
+					"activate": true
+				}
+			},
+			{
+				"step": "installTheme",
+				"themeZipFile": {
+					"resource": "wordpress.org/themes",
+					"slug": "twentytwentyfour"
+				}
+			},
+			{
+				"step": "installTheme",
+				"themeZipFile": {
+					"resource": "url",
+					"url": "https://makeiteasypopup.makeiteasy.hr/twentytwentyfour-childv4.zip"
+				},
+				"options": {
+					"activate": true
+				}
+			},
+			{
+				"step": "setSiteOptions",
+				"options": {
+					"blogname": "MakeITeasy popup demo",
+					"blogdescription": "Popup demo",
+					"page_on_front": "4",
+					"users_can_register": "0",
+					"admin_email": "your-email@email.ml",
+					"start_of_week": "1",
+					"use_balanceTags": "0",
+					"use_smilies": "1",
+					"require_name_email": "1",
+					"comments_notify": "1",
+					"posts_per_rss": "10"
+				}
+			},
+			{
+				"step": "setSiteOptions",
+				"options": {
+					"default_category": "1",
+					"posts_per_page": "10",
+					"date_format": "F j, Y",
+					"time_format": "g:i a",
+					"links_updated_date_format": "F j, Y g:i a",
+					"comment_moderation": "0"
+				}
+			},
+			{
+				"step": "setSiteOptions",
+				"options": {
+					"moderation_notify": "1",
+					"hack_file": "0",
+					"blog_charset": "UTF-8",
+					"ping_sites": "http://rpc.pingomatic.com/",
+					"comment_max_links": "2",
+					"gmt_offset": "0",
+					"default_email_category": "1",
+					"template": "twentytwentyfour",
+					"stylesheet": "twentytwentyfour-child",
+					"comment_registration": "0"
+				}
+			},
+			{
+				"step": "setSiteOptions",
+				"options": {
+					"html_type": "text/html",
+					"use_trackback": "0",
+					"default_role": "subscriber",
+					"uploads_use_yearmonth_folders": "1",
+					"blog_public": "1",
+					"default_link_category": "2",
+					"show_on_front": "page",
+					"show_avatars": "1",
+					"avatar_rating": "G"
+				}
+			},
+			{
+				"step": "unzip",
+				"zipFile": {
+					"resource": "url",
+					"url": "https://makeiteasypopup.makeiteasy.hr/2024.zip"
+				},
+				"extractToPath": "/wordpress/wp-content/uploads"
+			},
+			{
+				"step": "importWxr",
+				"file": {
+					"resource": "url",
+					"url": "https://makeiteasypopup.makeiteasy.hr/makeiteasypopupblock.WordPress.2024-09-23_1.xml"
+				}
+			}
+		]
+	}

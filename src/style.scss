@@ -1,0 +1,242 @@
+$default-padding-vertical: 0.7rem;
+$default-padding-horizontal: 1.1rem;
+$default-mobile-breakpoint: 48rem;
+
+.wp-block-makeiteasy-popup {
+	.makeiteasy-popup-overlay {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		//  align wide and align full are not automatically working since align classes are moved to wrapper
+
+		// > .makeiteasy-popup-wrapper.alignwide {
+		// 	max-width: var(--wp--style--global--wide-size);
+		// }
+
+		// > .makeiteasy-popup-wrapper.alignfull {
+		// 	max-width: none;
+		// }
+
+		// > .makeiteasy-popup-wrapper.alignwide,
+		// > .makeiteasy-popup-wrapper.alignfull {
+		// 	width: 100%;
+		// }
+
+		// > .makeiteasy-popup-wrapper.is-content-justification-center {
+		// 	&.alignwide,
+		// 	&.alignfull {
+		// 		.makeiteasy-popup-close {
+		// 			position: absolute;
+		// 			right: 0;
+		// 		}
+		// 	}
+		// }
+	}
+
+	&.popup-modal {
+		position: fixed;
+		inset: 0;
+		max-width: none;
+
+		.makeiteasy-popup-overlay {
+			width: 100%;
+			height: 100%;
+			background: #2227;
+		}
+	}
+
+	visibility: hidden;
+
+	&.is-open {
+		visibility: visible;
+	}
+
+	.makeiteasy-popup-close {
+		background: none;
+		border: none;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		padding: 2px 2px;
+		margin: 0 0 0 1ch;
+		align-self: flex-start;
+		position: absolute;
+		top: $default-padding-vertical;
+		right: $default-padding-horizontal;
+
+		svg {
+			fill: var(--wp--preset--color--black, #000);
+			pointer-events: none;
+		}
+
+		&:focus-visible {
+			outline: var(--wp--preset--color--contrast, #242424) 1px solid;
+		}
+	}
+
+	&.popup-floating {
+		position: fixed;
+		z-index: 99998;
+		max-width: none;
+
+		.makeiteasy-popup-overlay {
+			position: absolute;
+		}
+
+		&,
+		.makeiteasy-popup-overlay {
+			bottom: 0;
+			top: 0;
+			left: 0;
+			right: 0;
+		}
+
+		&.position-top {
+			bottom: auto;
+		}
+
+		&.position-bottom {
+			top: auto;
+		}
+
+		&.position-left {
+			right: auto;
+		}
+
+		&.position-right {
+			left: auto;
+		}
+	}
+
+	.makeiteasy-popup-wrapper {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: var(--wp--preset--color--white, #fff);
+
+		@media (max-width: $default-mobile-breakpoint) {
+			&.has-above-close .makeiteasy-popup-close {
+				top: -2.3rem;
+				right: 0;
+			}
+		}
+
+		.popup-position-above::before {
+			top: auto;
+			bottom: -1.2rem;
+			transform: translateX(-50%) rotateX(180deg);
+		}
+	}
+
+	&.popup-fixed {
+		.makeiteasy-popup-wrapper {
+			position: absolute;
+			width: 100%;
+			box-sizing: border-box;
+			justify-content: center;
+		}
+
+		.makeiteasy-popup-close {
+			flex: none;
+		}
+
+		.makeiteasy-popup-content-wrapper.is-content-justification-center + .makeiteasy-popup-close {
+			position: absolute;
+			right: 3ch;
+		}
+
+		// left and right panned popups
+		&.position-left .makeiteasy-popup-wrapper,
+		&.position-right .makeiteasy-popup-wrapper {
+			width: 10%;
+			height: 100%;
+		}
+	}
+
+	.makeiteasy-popup-content-wrapper {
+		align-items: center;
+		width: 100%;
+
+		&.is-content-justification-left {
+			margin-left: 0;
+			margin-right: auto;
+		}
+
+		&.is-content-justification-right {
+			margin-right: 0;
+			margin-left: auto;
+		}
+	}
+
+	// consider later rewriting this, putting this in separate viewStyle, without not
+	&:not(.block-editor-block-list__block) {
+		margin-block-start: 0;
+	}
+
+	&.popup-attached:not(.block-editor-block-list__block) {
+		position: fixed;
+		inset: 0;
+		margin: 0 !important;
+		max-width: none;
+
+		.makeiteasy-popup-overlay {
+			position: absolute;
+			inset: 0;
+		}
+
+		.makeiteasy-popup-wrapper {
+			position: absolute;
+			top: 0;
+		}
+
+		.popup-position-above .makeiteasy-popup-wrapper {
+			top: auto;
+			bottom: 0;
+		}
+	}
+
+	&.position-top .makeiteasy-popup-wrapper {
+		top: 0;
+	}
+
+	@media screen and (min-width: 601px) {
+		@at-root .admin-bar &.position-top .makeiteasy-popup-wrapper {
+			top: 32px;
+
+			@media screen and (max-width: 782px) {
+				top: 46px;
+			}
+		}
+	}
+
+	&.position-left .makeiteasy-popup-wrapper {
+		left: 0;
+	}
+
+	&.position-bottom .makeiteasy-popup-wrapper {
+		bottom: 0;
+	}
+
+	&.position-right .makeiteasy-popup-wrapper {
+		right: 0;
+	}
+}
+
+body.has-floating-popup {
+	overflow: hidden;
+}
+
+.makeiteasy-popup-outermost {
+	margin: 0;
+
+	&.popup-fixed.position-top {
+		margin-block-start: 0;
+	}
+}
+
+// fallback padding
+.makeiteasy-popup-wrapper {
+	padding: $default-padding-vertical $default-padding-horizontal;
+}

@@ -1,0 +1,123 @@
+/**
+ * The following styles get applied inside the editor only.
+ */
+
+.wp-block-makeiteasy-popup {
+	display: flex;
+
+	&.alignwide,
+	&.alignfull {
+		.is-content-justification-center + .makeiteasy-popup-close {
+			position: absolute;
+			right: 0;
+		}
+	}
+
+	.makeiteasy-popup-wrapper {
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	&.disabled {
+		// TODO: rework this, repeating linear gradient works well only with transparent background
+		.makeiteasy-popup-wrapper::after {
+			content: '';
+			display: block;
+			position: absolute;
+			inset: 0;
+			background: repeating-linear-gradient(-45deg, #38383878, #38383878 15px, #5c5c5cb0 15px, #5c5c5cb0 18px);
+		}
+		// filter: saturate(35%) brightness(35%);
+
+		.makeiteasy-popup-wrapper {
+			background: none;
+		}
+	}
+
+	&.wp-block-makeiteasy-popup {
+		visibility: visible;
+		opacity: 1;
+		z-index: auto;
+	}
+
+	/* block element classes */
+
+	&.is-hidden {
+		display: none !important;
+	}
+
+	&.wp-block-makeiteasy-popup {
+		position: relative;
+	}
+
+	&.popup-floating {
+		.makeiteasy-popup-overlay {
+			position: unset;
+			display: block;
+		}
+
+		&,
+		.makeiteasy-popup-overlay {
+			bottom: unset;
+			top: unset;
+			left: unset;
+			right: unset;
+			display: block;
+			background: none;
+			width: auto;
+		}
+	}
+
+	&.popup-fixed {
+		&.popup-fixed.popup-fixed {
+			max-width: none;
+		}
+
+		.makeiteasy-popup-overlay {
+			width: 100%;
+		}
+
+		.makeiteasy-popup-wrapper {
+			position: relative;
+		}
+	}
+
+	&.popup-attached {
+		.makeiteasy-popup-overlay {
+			position: relative;
+		}
+
+		.makeiteasy-popup-wrapper {
+			position: unset;
+		}
+	}
+
+	/* end of block element classes */
+
+	.makeiteasy-popup-close {
+		cursor: default;
+	}
+
+	@at-root .admin-bar &.position-top .makeiteasy-popup-wrapper {
+		top: auto;
+	}
+}
+
+/*
+ * Plugin Sidebar
+ */
+.makeiteasy-popup-days-to-show-again {
+	width: 100%;
+
+	.components-base-control__field > * {
+		display: block;
+	}
+
+	.components-text-control__input {
+		width: 10ch;
+	}
+}
+
+.mie-modality-type {
+	display: block;
+}
